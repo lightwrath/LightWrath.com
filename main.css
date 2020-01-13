@@ -1,0 +1,373 @@
+/* BASICS */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background-image: url("bkgnd.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+/* BASICS END */
+/* NAV BAR */
+nav {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    font-size: 28px;
+    top: 0px;
+    left: 0px;
+    color: #fffcf2;
+}
+
+nav ul {
+    float: right;
+    margin-top: 10px;
+}
+
+nav h1 {
+    float: left;
+}
+
+nav li {
+    display: inline-block;
+    list-style-type: none;
+    width: 200px;
+    font-size: 28px;
+}
+
+nav li:hover {
+    color: #eb5e28;
+    transition-duration: 0.3s;
+}
+
+/* MAIN DOCUMENT */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%
+}
+
+main {
+    color: #ccc5b9;
+    background-color: #252422;
+    border-radius: 10px;
+    margin: 100px 0 100px 0;
+}
+
+h1 {
+    font-size: 32px;
+    font-family: 'Raleway', sans-serif;
+}
+
+p, li {
+    font-size: 18px;
+    color: #fffcf2;
+    font-family: sans-serif;
+}
+
+.buttonText {
+    border-bottom: 2px solid #403d39;
+    list-style-type: none;
+    display: inline-block;
+    font-size: 28px;
+    font-family: sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition-duration: 0.3s;
+}
+
+.buttonText:hover {
+    border-bottom: 2px solid #eb5e28;
+}
+
+.buttonIcon {
+    list-style-type: none;
+    display: block;
+    transition-duration: 0.3s;
+}
+
+.buttonIcon:hover {
+    color: #eb5e28;
+}
+
+/*
+@media only screen and (max-height: 900px) {
+    main {
+        color: #fffcf2;
+        background-color: #252422;
+        border-radius: 10px;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+    }
+}
+/*
+
+/* MAIN DOCUMENT END */
+/* HOME SECTION 
+#card {    
+    width: 500px;
+    height:600px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    display: none; 
+}
+
+#card div {
+    text-align: center;
+    margin: auto;
+}
+
+#card img {
+    height: 200px;
+    width: auto;
+    border-radius: 50%;
+}
+#card h1 {
+    letter-spacing: 10px;
+}
+
+#card div ul {
+    width: 300px;
+    margin: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#card div ul .buttonIcon {
+    font-size: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* HOME SECTION END */
+
+/*PROJECTS SECTION */
+
+#projects {
+    max-width: 1200px;
+    width: 90vw;
+    padding: 20px;
+    display: none; /*MANUAL TOGGLE ARTICAL, DEBUG ONLY */
+}
+
+#projects h1 {
+    text-align: center;
+    border-bottom: 2px solid #403d39;
+}
+
+#projects article {
+    
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 2px #403d39;
+    margin: 10px 10px 10px 10px;
+}
+
+#projects article img {
+    height: 200px;
+}
+
+#projects article .summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#projects article .summary .disc {
+    text-align: center;
+}
+
+#projects article .summary .disc h2 {
+    padding-bottom: 10px;
+}
+
+#projects .techTags {
+    margin: 5px;
+}
+
+#projects article .summary .techTags li {
+    display: inline;
+    list-style-type: none;
+    text-align: center;
+    background-color: #403d39;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#projects ul {
+    margin: 0px;
+}
+
+#projects article .icons li {
+    list-style-type: none;
+    padding: 22px;
+    text-align: center;
+    font-size: 20px;
+}
+
+/*PROJECTS SECTION END */
+/* RESUME SECTION */
+
+#resume {
+    display: block;
+    max-width: 1200px;
+    width: 90vw;
+    height: 1750px;
+}
+
+#resume h1 {
+    letter-spacing: 10px;
+    line-height: 2em;
+    font-size: 3em;
+    color: #eb5e28;
+}
+
+#resume h2 {
+    color: #eb5e28;
+    margin: 0.5em 0 0.5em 0;
+}
+
+#resume h3 {
+    color: #ccc5b9;
+    margin: 0.5em 0 0.5em 0;
+}
+
+#resume .cvSideBar {
+    height: 100%;
+    width: 25%;
+    border-radius: 10px 0 0 10px;
+    background-color: #403d39;
+    display: inline-block;
+    vertical-align:top;
+    margin-right: -4px;
+}
+
+#resume .cvSideBar h2 {
+    text-align: center;
+    border-bottom: 2px solid #eb5e28;
+}
+
+#resume .cvSideBar div {
+    padding: 10%;
+}
+
+#resume .cvSideBar li {
+    list-style-type: none;
+    line-height: 1.5em;
+    color: #fffcf2;
+}
+
+#resume .cvPhoto img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+#resume .cvContent {
+    height: 95%;
+    width: 70%;
+    padding: 2.5%;
+    display: inline-block;
+    margin-right: -4px;
+}
+
+#resume .cvPersonal, .cvWork, .cvHobbies, .cvEducation {
+    margin-bottom: 50px;
+}
+
+#resume .cvContact {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#resume .cvWorkTitle {
+    float: left;
+}
+
+#resume .cvWorkLocation {
+    float: right;
+}
+
+#resume .cvWorkContent {
+    clear: both;
+    padding: 20px;
+}
+
+#resume .cvEducation ul {
+    padding-left: 20px;
+}
+
+/* RESUME SECTION END */
+/* CONTACT SECTION */
+#contact {
+    max-width: 1200px;
+    width: 90vw;
+    padding: 20px;
+    /*margin-bottom: 10px;*/
+    display: none; /*MANUAL TOGGLE ARTICAL, DEBUG ONLY */
+}
+
+#contact h1 {
+    text-align: center;
+    border-bottom: 2px solid #403d39;
+}
+
+#contact form {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+#contact input {
+    flex-basis: 40%;
+    font-size: 18px;
+    margin: 15px;
+    border: none;
+    border: auto;
+    border-radius: 5px;
+    background-color: #fffcf2;
+    color: #252422;
+    padding: 5px;
+}
+
+#contact .formSubject {
+    flex-basis: 100%;
+}
+
+#contact .formMessage {
+    flex-basis: 100%;
+    height: 5em;
+}
+
+#contact .formSubmit, .formFile {
+    flex-basis: 20%;
+    background-color: #252422;
+    color: #fffcf2;
+    border: 1px solid #fffcf2;
+    transition: 0.3s;
+}
+
+#contact .formSubmit:hover {
+    color: #eb5e28;
+    border-color: #eb5e28
+}
+
+/*CONTACT SECTION END */

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>LightWrath.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css"> <!-- Main CSS file -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"> <!-- Google fonts include -->
+        <script type="text/javascript" src="main.js"></script> <!-- Main Javascript file -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- JQuery include -->
+        <script src="https://kit.fontawesome.com/d9083f99b7.js"></script> <!-- Fontawesome include script -->
+    </head>
+    <body>
+        <nav>
+            <h1>LW</h1>
+            <ul>
+                <li onclick="showProjects()">Projects</li>
+                <li onclick="showResume()">Resume</li>
+                <li>About</li>
+                <li onclick="showContact()">Contact</li>
+            </ul>
+        </nav>
+        <main>
+            <!--<section id="card">
+                <div>
+                    <img src="profileImg.jpg" alt="Kyle">
+                </div>
+                <div>
+                    <h1>KYLE BIGGINS</h1>
+                    <p>Passionate about development and technology.</p>
+                </div>
+                <div>
+                    <ul>
+                        <li class="buttonText">Projects</li>
+                        <li class="buttonText">Resume</li>
+                    </ul>
+                    <ul>
+                        <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                        <li class="buttonIcon"><i class="fas fa-envelope"></i></li>
+                        <li class="buttonIcon"><i class="fab fa-linkedin"></i></li>
+                    </ul>
+                </div>
+
+            </section>  card section end -->
+            <section id="projects">
+                <h1>Projects</h1>
+                <div class="filterTags">
+                    Filtering Div
+                </div>
+                <article>
+                    <div>
+                        <img src="projectFiles/project1Img.jpg" alt="">
+                    </div>
+                    <div class="summary">
+                        <div class="disc">
+                                <h2>Project Title Here</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                        </div>
+                        <div class="techTags">
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <ul>
+                            <li class="buttonIcon"><i class="fas fa-eye"></i></li>
+                            <li type="button" class="buttonIcon" data-toggle="docFrame" data-target:="docFrameShow"><i class="fas fa-file-alt"></i></li>
+                            <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <img src="projectFiles/project1Img.jpg" alt="">
+                    </div>
+                    <div class="summary">
+                        <div class="disc">
+                                <h2>Project Title Here</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                        </div>
+                        <div class="techTags">
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <ul>
+                            <li class="buttonIcon"><i class="fas fa-eye"></i></li>
+                            <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                            <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <img src="projectFiles/project1Img.jpg" alt="">
+                    </div>
+                    <div class="summary">
+                        <div class="disc">
+                                <h2>Project Title Here</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                        </div>
+                        <div class="techTags">
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <ul>
+                            <li class="buttonIcon"><i class="fas fa-eye"></i></li>
+                            <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                            <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <img src="projectFiles/project1Img.jpg" alt="">
+                    </div>
+                    <div class="summary">
+                        <div class="disc">
+                                <h2>Project Title Here</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                        </div>
+                        <div class="techTags">
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <ul>
+                            <li class="buttonIcon"><i class="fas fa-eye"></i></li>
+                            <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                            <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                        </ul>
+                    </div>
+                </article>
+            </section> <!-- Projects section end -->
+            <section id="resume"> <!--- Resume Section -->
+                <div class="cvSideBar">
+                    <div class="cvPhoto">
+                        <img src="/cvProfilePic.jpg" alt="">
+                    </div>
+                    <div class="cvKeySkills">
+                        <h2>Technologies</h2>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                        </ul>
+                    </div>
+                    <div class="cvContactMe">
+                        <h2>Get in touch</h2>
+                        <ul>
+                            <li>kyle_biggins@outlook.com</li>
+                            <li>045 7877 1774</li>
+                            <li>lightwrath.com</li>
+                        </ul>
+                        <p><em>referances available on request</em></p>
+                    </div>
+
+                </div>
+                <div class="cvContent">
+                    <div class="cvContact">
+                        <div class="cvName">
+                            <h1>Kyle Biggins</h1>
+                        </div>
+                        <div class="cvJobTitle">
+                            <h3>System Specialist</h3>
+                        </div>
+                        
+                    </div>
+                    <div class="cvPersonal">
+                        <h2>Personal statement</h2>
+                        <p>
+                            A self-determined and competent individual with knowledge in the software development cycle and an understanding of project management systems. 
+                            With great interest in a role of software testing/development with an ambitious company.
+                        </p>
+                        <p>
+                            Having excellent technical analytical skills to allow for efficient problem solving through investigation and testing. 
+                            Brilliant communication skills with the ability to liaise with customers and discuss ideas within a team environment.
+                        </p>
+                    </div>
+                    <div class="cvWork">
+                        <h2>Employment History</h2>
+                        <div class="cvWorkTitle">
+                            <h3>System Analyst</h3>
+                        </div>
+                        <div class="cvWorkLocation">
+                            <h3>NHS Ophthalmology</h3>
+                        </div>
+                        <div class="cvWorkContent">
+                            <ul>
+                                <li>Planned, created, tested and deployed automation software that I developed in Python for processing appointment data between 2 medical systems.</li>
+                                <li>Tasked with the creation of Front-End web applications for viewing medical information from a SQL database.</li>
+                                <li>I documented the development process for my projects, creating a project scope and ensuring the project remains within scope. Creating and recording a testing plan, followed by a monitored trail of software. Creating a deployment plan and documenting the installation process as well as documenting previous procedures to ensure compatibility and fallback should it had been required.</li>
+                                <li>Responsible for creating SQL queries using SQL Server 2012 to extract data and represent it in a human-readable reform</li>
+                                <li>Managed back-end medical system maintenance, such as creating new users and managing permissions. Proving support and answering to feature requests. Creating an action plan for the implementation of new software features.</li>
+                                <li>Proving software training to colleagues and ensuring best practices are upheld by users to safeguard data integrity.</li>
+                            </ul>
+                        </div>
+                        <div class="cvWorkTitle">
+                            <h3>Technical Analyst</h3>
+                        </div>
+                        <div class="cvWorkLocation">
+                            <h3>Dixons Carphone</h3>
+                        </div>
+                        <div class="cvWorkContent">
+                            <ul>
+                                <li>Installation and configuration of operating systems and applications.</li>
+                                <li>Providing support for hardware and software issues.</li>
+                                <li>Diagnosing and solving hardware and software faults.</li>
+                                <li>Testing, evaluating and supporting new technologies.</li>
+                                <li>Analysing technical logs to discover faults.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="cvHobbies">
+                        <h2>Hobbies</h2>
+                        <p>
+                            I demonstrate my passion for technology in both my work life and at home. 
+                            I’m an advocate for open source software (Github) and the Linux operating system. 
+                            I enjoy investing my time into learning new technologies that interest me and finding technical solutions to issues in my daily life.
+                        </p>
+                        <p>
+                            I run and maintain my own Debian based server in an attempt to try to keep my own ‘cloud’ services hosted from home. 
+                            This is more difficult than just using Google (etc) and although I still use these service’s I enjoy the rewarding aspect of having full control over my own technology and data. 
+                        </p>
+                        <p>
+                            I often perform my own projects and manage these though JIRA (self-hosted) using a Scrum framework, although this is intended for team development, 
+                            I think it’s breaking down of large tasks, note recording and allowing for a timebox allows for good planning and ensuring task completion is upheld. 
+                        </p>
+                    </div>
+                    <div class="cvEducation">
+                        <h2>Education</h2>
+                        <ul>
+                            <li>Level 3 Diploma in ICT Professional Competence</li>
+                            <li>Level 3 Diploma for ICT Systems and Principles for IT Professionals</li>
+                            <li>70-680 MCTS & 70-685 Windows Enterprise Desktop Support Technician </li>
+                            <li>ComTIA Network + Technician</li>
+                            <li>CompTIA A+ Certified (2009)</li>
+                            <li>Finnish Language proficiency: A2.2 (Dec 2019)</li>
+                            <li>Level 2 Key Skills in Application of Number (2004)</li>
+                            <li>Level 2 Award in Employability and Personal Development</li>
+                            <li>National Vocational Qualification, Level 2 Performing Engineering Operations</li>
+                            <li>Level 3 BTEC National Diploma in Manufacturing Engineering</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section id="contact"> <!-- Contact section -->
+                <h1>Connect with me</h1>
+                <form>
+                    <input class="formName" type="text" name="Name" placeholder="Name..." required>
+                    <input class="formEmail" type="email" name="E-mail" placeholder="E-mail..." required>
+                    <input class="formSubject" type="text" name="Subject" placeholder="Subject..." required>
+                    <input class="formMessage" type="text" name="Message" placeholder="Message..." required>
+                    <input class="formFile" type="file" name="Attachment">
+                    <input class="formSubmit" type="submit" name="SEND MESSAGE" value="SEND MESSAGE">
+                </form>
+            </section> <!-- Contact section end -->
+        </main
+    </body>
+</html>
