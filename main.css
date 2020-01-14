@@ -40,6 +40,7 @@ nav li {
     list-style-type: none;
     width: 200px;
     font-size: 28px;
+    cursor: pointer;
 }
 
 nav li:hover {
@@ -119,45 +120,6 @@ a, a:visited{
 /*
 
 /* MAIN DOCUMENT END */
-/* HOME SECTION 
-#card {    
-    width: 500px;
-    height:600px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    display: none; 
-}
-
-#card div {
-    text-align: center;
-    margin: auto;
-}
-
-#card img {
-    height: 200px;
-    width: auto;
-    border-radius: 50%;
-}
-#card h1 {
-    letter-spacing: 10px;
-}
-
-#card div ul {
-    width: 300px;
-    margin: 25px;
-    display: flex;
-    justify-content: space-around;
-}
-
-#card div ul .buttonIcon {
-    font-size: 28px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-/* HOME SECTION END */
 
 /*PROJECTS SECTION */
 
@@ -392,3 +354,51 @@ a, a:visited{
 }
 
 /*CONTACT SECTION END */
+
+/* PROJECT ARTICAL SECTION */
+
+.projectPage {
+    max-width: 1200px;
+    width: 90vw;
+}
+
+.projectPage .splashImage {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.projectPage .pubBody {
+    padding: 5%;
+    border-bottom: #403d39 solid 2px;
+}
+
+.projectPage .pubInfo {
+    color: #ccc5b9;
+    margin: 25px 0 25px 0;
+}
+
+.projectPage h2, h3 {
+    margin: 20px 0 20px 0;
+}
+
+.projectPage p {
+    padding: 10px 0 10px 0;
+}
+.projectPage .codeSnip {
+    background-color: #403d39;
+    color: #fffcf2;
+}
+
+.projectPage .code {
+    background-color: #403d39;
+    color: #fffcf2;
+    white-space: pre-wrap;
+    border-radius: 10px;
+    padding: 1% 1% 1% 1%;
+}
+
+.projectPage .pubFooter {
+    padding: 5%;
+}
+
+/* PROJECT ARTICAL SECTION END */
