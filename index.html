@@ -13,11 +13,11 @@
     </head>
     <body>
         <nav>
-            <h1>LW</h1>
+            <h1>LW</h1><span><p>(Alpha)</p></span>
             <ul>
                 <li onclick="showProjects()">Projects</li>
                 <li onclick="showResume()">Resume</li>
-                <li>About</li>
+                <li onclick="showAbout()">About</li>
                 <li onclick="showContact()">Contact</li>
             </ul>
         </nav>
@@ -49,44 +49,68 @@
                     Filtering Div
                 </div>
                 <article>
-                    <div>
-                        <img src="projectFiles/project1Img.jpg" alt="">
+                    <div class="projectThumb">
+                        <img src="/article/install_setup_linux_server/fedora-linux-thumb.png" alt="">
                     </div>
                     <div class="summary">
                         <div class="disc">
-                                <h2>Project Title Here</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                                <h2>Fedora 31 Installation and setup</h2>
+                                <p>Installation media creation and and basic Fedora installaton. Media creation script available on github, uses dialog and dd for easy media creation on linux.</p>
                         </div>
                         <div class="techTags">
                             <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
+                                <li>Linux</li>
+                                <li>bash</li>
                             </ul>
                         </div>
                     </div>
                     <div class="icons">
                         <ul>
-                            <li class="buttonIcon"><i class="fas fa-eye"></i></li>
-                            <li type="button" class="buttonIcon" data-toggle="docFrame" data-target:="docFrameShow"><i class="fas fa-file-alt"></i></li>
+                            <li class="buttonIcon"><a href="/article/install_setup_linux_server/install_&_setup_linux_server.html"><i class="fas fa-eye"></i></a></li>
+                            <li class="buttonIcon"><a href="https://github.com/lightwrath/linux-media.creator-script/blob/master/README.md"><i class="fas fa-file-alt"></i></a></li>
+                            <li class="buttonIcon"><a href="https://github.com/lightwrath/linux-media.creator-script"><i class="fab fa-github-square"></i></a></li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <div class="projectThumb">
+                        <img src="/article/btrfs_setup-cheat_sheet/btrfsThumb.jpg" alt="">
+                    </div>
+                    <div class="summary">
+                        <div class="disc">
+                                <h2>BTRFS</h2>
+                                <p>Configure BTRFS and perform maintaince tasks</p>
+                        </div>
+                        <div class="techTags">
+                            <ul>
+                                <li>Linux</li>
+                                <li>BTRFS</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <ul>
+                            <li class="buttonIcon"><a href="/article/btrfs_setup-cheat_sheet/btrfs_cheat_sheet.html"><i class="fas fa-eye"></i></a></li>
+                            <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
                             <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
                         </ul>
                     </div>
                 </article>
                 <article>
-                    <div>
-                        <img src="projectFiles/project1Img.jpg" alt="">
+                    <div class="projectThumb">
+                        <img src="/article/docker/docker_logo_thumb.png" alt="">
                     </div>
                     <div class="summary">
                         <div class="disc">
-                                <h2>Project Title Here</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                                <h2>Docker Basics</h2>
+                                <p>Install Docker and Docker Compose, general usage and monitoring, SELinux and docker.</p>
                         </div>
                         <div class="techTags">
                             <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
+                                <li>Linux</li>
+                                <li>Docker</li>
+                                <li>Docker Compose</li>
+                                <li>SELinux</li>
                             </ul>
                         </div>
                     </div>
@@ -99,44 +123,18 @@
                     </div>
                 </article>
                 <article>
-                    <div>
-                        <img src="projectFiles/project1Img.jpg" alt="">
+                    <div class="projectThumb">
+                        <img src="/article/plex/plexThumb.jpg" alt="">
                     </div>
                     <div class="summary">
                         <div class="disc">
-                                <h2>Project Title Here</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
+                                <h2>Plex (with Docker)</h2>
+                                <p>Installation of Plex through docker</p>
                         </div>
                         <div class="techTags">
                             <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="icons">
-                        <ul>
-                            <li class="buttonIcon"><i class="fas fa-eye"></i></li>
-                            <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
-                            <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
-                        </ul>
-                    </div>
-                </article>
-                <article>
-                    <div>
-                        <img src="projectFiles/project1Img.jpg" alt="">
-                    </div>
-                    <div class="summary">
-                        <div class="disc">
-                                <h2>Project Title Here</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In neque saepe, reprehenderit itaque sed ab doloribus, dignissimos aut rerum error obcaecati similique asperiores fuga corrupti eligendi. Dolores deserunt perferendis ex.</p>
-                        </div>
-                        <div class="techTags">
-                            <ul>
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JavaScript</li>
+                                <li>Docker</li>
+                                <li>Docker Compose</li>
                             </ul>
                         </div>
                     </div>
@@ -157,8 +155,30 @@
                     <div class="cvKeySkills">
                         <h2>Technologies</h2>
                         <ul>
-                            <li>HTML</li>
+                            <li>Linux</li>
+                            <li>Windows Desktop XP - 10</li>
+                            <li>Windows Server</li>
+                            <br>
+                            <li>Active Directory</li>
+                            <li>AWS EC2</li>
+                            <li>Docker & Docker Compose</li>
+                            <li>JIRA</li>
+                            <li>Microsoft Office</li>
+                            <li>Networking</li>
+                            <li>RAID & BTRFS</li>
+                            <br>
+                            <li>BASH</li>
                             <li>CSS</li>
+                            <li>HTML</li>
+                            <li>Python</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+                    <div class="cvLanguage">
+                        <h2>Languages</h2>
+                        <ul>
+                            <li>English - Native</li>
+                            <li>Finnish - A2.2 (2019)</li>
                         </ul>
                     </div>
                     <div class="cvContactMe">
@@ -168,6 +188,7 @@
                             <li>045 7877 1774</li>
                             <li>lightwrath.com</li>
                         </ul>
+                        <br>
                         <p><em>referances available on request</em></p>
                     </div>
 
@@ -178,30 +199,31 @@
                             <h1>Kyle Biggins</h1>
                         </div>
                         <div class="cvJobTitle">
-                            <h3>System Specialist</h3>
+                            <h3>IT System Specialist</h3>
                         </div>
                         
                     </div>
                     <div class="cvPersonal">
                         <h2>Personal statement</h2>
                         <p>
-                            A self-determined and competent individual with knowledge in the software development cycle and an understanding of project management systems. 
-                            With great interest in a role of software testing/development with an ambitious company.
+                            A self-determined professional with extensive knowledge in system installation, configuration, automation on Linux and Windows operating systems. 
+                            Proficient usage of project management tools and frameworks, along with an understand of the software development cycle and programming skills.
                         </p>
+                        <br>
                         <p>
                             Having excellent technical analytical skills to allow for efficient problem solving through investigation and testing. 
                             Brilliant communication skills with the ability to liaise with customers and discuss ideas within a team environment.
                         </p>
                     </div>
                     <div class="cvWork">
-                        <h2>Employment History</h2>
+                        <h2>Employment history</h2>
                         <div class="cvWorkTitle">
-                            <h3>System Analyst</h3>
+                            <h3>System Administrator</h3>
                         </div>
                         <div class="cvWorkLocation">
                             <h3>NHS Ophthalmology</h3>
                         </div>
-                        <div class="cvWorkContent">
+                        <div class="cvWorkContent"> <!-- What about assisting in deploying and intergrating the medical imaging database -->
                             <ul>
                                 <li>Planned, created, tested and deployed automation software that I developed in Python for processing appointment data between 2 medical systems.</li>
                                 <li>Tasked with the creation of Front-End web applications for viewing medical information from a SQL database.</li>
@@ -228,19 +250,21 @@
                         </div>
                     </div>
                     <div class="cvHobbies">
-                        <h2>Hobbies</h2>
+                        <h2>Continuous Improvement / Continuous Development</h2>
                         <p>
-                            I demonstrate my passion for technology in both my work life and at home. 
-                            I’m an advocate for open source software (Github) and the Linux operating system. 
+                            I demonstrate my passion for technology in both my work and personal life. 
+                            I’m an advocate for open source software and the Linux operating system. 
                             I enjoy investing my time into learning new technologies that interest me and finding technical solutions to issues in my daily life.
                         </p>
+                        <br>
                         <p>
-                            I run and maintain my own Debian based server in an attempt to try to keep my own ‘cloud’ services hosted from home. 
-                            This is more difficult than just using Google (etc) and although I still use these service’s I enjoy the rewarding aspect of having full control over my own technology and data. 
+                            I run and maintain my own home Fedora server to host my own cloud services. 
+                            This allows me to learn and develop my skills in the latest technologies and practices in my own time. Recently I have started to write about my personal advancement on this website.
                         </p>
+                        <br>
                         <p>
                             I often perform my own projects and manage these though JIRA (self-hosted) using a Scrum framework, although this is intended for team development, 
-                            I think it’s breaking down of large tasks, note recording and allowing for a timebox allows for good planning and ensuring task completion is upheld. 
+                            I think it’s breaking down of large tasks, note recording and allowing for a flexible scope results in good planning and ensuring task completion is upheld. 
                         </p>
                     </div>
                     <div class="cvEducation">
@@ -259,6 +283,12 @@
                         </ul>
                     </div>
                 </div>
+            </section>
+            <section id="about">
+                <h1>About this project</h1>
+                <h1>Future intentions</h1>
+
+
             </section>
             <section id="contact"> <!-- Contact section -->
                 <h1>Connect with me</h1>

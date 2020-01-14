@@ -2,6 +2,8 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-size: 18px;
+    font-family: sans-serif;
 }
 
 html {
@@ -49,9 +51,10 @@ nav li:hover {
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100%
+    min-height: 100%;
 }
 
 main {
@@ -70,6 +73,10 @@ p, li {
     font-size: 18px;
     color: #fffcf2;
     font-family: sans-serif;
+}
+
+a, a:visited{
+    color: inherit;
 }
 
 .buttonText {
@@ -167,17 +174,16 @@ p, li {
 }
 
 #projects article {
-    
     height: 200px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: solid 2px #403d39;
     margin: 10px 10px 10px 10px;
 }
 
-#projects article img {
+#projects img {
     height: 200px;
 }
 
@@ -185,6 +191,7 @@ p, li {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex-grow: 1;
     padding-left: 5%;
     padding-right: 5%;
 }
@@ -226,10 +233,10 @@ p, li {
 /* RESUME SECTION */
 
 #resume {
-    display: block;
+    display: table;
     max-width: 1200px;
     width: 90vw;
-    height: 1750px;
+    min-height: 100%;
 }
 
 #resume h1 {
@@ -249,12 +256,16 @@ p, li {
     margin: 0.5em 0 0.5em 0;
 }
 
+#resume p {
+    display: block;
+}
+
 #resume .cvSideBar {
     height: 100%;
     width: 25%;
     border-radius: 10px 0 0 10px;
     background-color: #403d39;
-    display: inline-block;
+    display: table-cell;
     vertical-align:top;
     margin-right: -4px;
 }
@@ -283,7 +294,8 @@ p, li {
     height: 95%;
     width: 70%;
     padding: 2.5%;
-    display: inline-block;
+    display: table-cell;
+    vertical-align: top;
     margin-right: -4px;
 }
 
@@ -316,6 +328,15 @@ p, li {
 }
 
 /* RESUME SECTION END */
+
+/* ABOUT SECTION */
+#about {
+    max-width: 1200px;
+    width: 90vw;
+    display: none;
+}
+/* ABOUT SECTION END */
+
 /* CONTACT SECTION */
 #contact {
     max-width: 1200px;
