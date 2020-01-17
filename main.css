@@ -15,7 +15,7 @@ html {
 }
 
 /* BASICS END */
-/* NAV BAR */
+/* NAV BAR */ /*
 nav {
     width: 100%;
     height: 60px;
@@ -65,6 +65,15 @@ main {
     margin: 100px 0 100px 0;
 }
 
+#navBar {
+   width: 100%;
+   position: absolute;
+   min-height: 60px;
+   top: 0px;
+   left: 0px;
+   overflow: hidden;
+}
+
 h1 {
     font-size: 32px;
     font-family: 'Raleway', sans-serif;
@@ -76,7 +85,7 @@ p, li {
     font-family: sans-serif;
 }
 
-a, a:visited{
+a, a:visited {
     color: inherit;
 }
 
@@ -127,7 +136,7 @@ a, a:visited{
     max-width: 1200px;
     width: 90vw;
     padding: 20px;
-    display: none; /*MANUAL TOGGLE ARTICAL, DEBUG ONLY */
+    /*display: none; MANUAL TOGGLE ARTICAL, DEBUG ONLY */
 }
 
 #projects h1 {
@@ -295,7 +304,8 @@ a, a:visited{
 #about {
     max-width: 1200px;
     width: 90vw;
-    display: none;
+    /*display: none; MANUAL TOGGLE ARTICAL, DEBUG ONLY */
+    padding: 2em;
 }
 /* ABOUT SECTION END */
 
@@ -305,7 +315,7 @@ a, a:visited{
     width: 90vw;
     padding: 20px;
     /*margin-bottom: 10px;*/
-    display: none; /*MANUAL TOGGLE ARTICAL, DEBUG ONLY */
+    /*display: none; MANUAL TOGGLE ARTICAL, DEBUG ONLY */
 }
 
 #contact h1 {
@@ -319,7 +329,7 @@ a, a:visited{
     flex-flow: wrap;
 }
 
-#contact input {
+#contact input, #contact textarea {
     flex-basis: 40%;
     font-size: 18px;
     margin: 15px;
@@ -338,6 +348,7 @@ a, a:visited{
 #contact .formMessage {
     flex-basis: 100%;
     height: 5em;
+    word-break: break-all;
 }
 
 #contact .formSubmit, .formFile {
@@ -346,6 +357,7 @@ a, a:visited{
     color: #fffcf2;
     border: 1px solid #fffcf2;
     transition: 0.3s;
+    margin-left: auto;
 }
 
 #contact .formSubmit:hover {
@@ -384,6 +396,12 @@ a, a:visited{
 .projectPage p {
     padding: 10px 0 10px 0;
 }
+
+.projectPage a:hover {
+   color: #eb5e28;
+   transition: 0.3s;
+}
+
 .projectPage .codeSnip {
     background-color: #403d39;
     color: #fffcf2;
