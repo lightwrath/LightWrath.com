@@ -1,0 +1,174 @@
+/* BASICS */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    background-image: url("bkgnd.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+main {
+    color: #ccc5b9;
+    background-color: #252422;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 32px;
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+    font-size: 18px;
+    color: #fffcf2;
+    font-family: sans-serif;
+}
+
+a {
+    color: #fffcf2;
+}
+
+a:hover {
+    color: #eb5e28;
+    transition-duration: 0.3s;
+}
+
+a:visited {
+    color: #eb5e28;
+}
+
+.buttonIcon {
+    list-style-type: none;
+    display: block;
+}
+
+/* BASICS END */
+
+/*
+@media only screen and (max-height: 900px) {
+    main {
+        color: #fffcf2;
+        background-color: #252422;
+        border-radius: 10px;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+    }
+}
+*/
+/* CARD START */
+
+#card {    
+    width: 500px;
+    height:600px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+#card #cog {
+    font-size: 200px;
+    position: absolute;
+    color: #403d39;
+    transform: translate(50%);
+    z-index: -1;
+}
+
+#card div {
+    text-align: center;
+    margin: auto;
+}
+
+#card div:nth-of-type(2) p {
+    font-size: 20px;
+}
+
+#card img {
+    height: 200px;
+    width: auto;
+    border-radius: 50%;
+}
+#card h1 {
+    letter-spacing: 10px;
+}
+
+#card div ul {
+    width: 300px;
+    margin: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#card div ul .buttonIcon {
+    font-size: 28px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* CARD END */
+/* CONTACT START */
+
+#contact {
+    max-width: 1200px;
+    width: 90vw;
+    padding: 20px;
+    /*margin-bottom: 10px;*/
+}
+
+#contact h1 {
+    text-align: center;
+    border-bottom: 2px solid #403d39;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+input {
+    flex-basis: 40%;
+    font-size: 18px;
+    margin: 15px;
+    border: none;
+    border: auto;
+    border-radius: 5px;
+    background-color: #fffcf2;
+    color: #252422;
+    padding: 5px;
+}
+
+.formSubject {
+    flex-basis: 100%;
+}
+
+.formMessage {
+    flex-basis: 100%;
+    height: 5em;
+}
+
+.formSubmit, .formFile {
+    flex-basis: 20%;
+    background-color: #252422;
+    color: #fffcf2;
+    border: 1px solid #fffcf2;
+    transition: 0.3s;
+}
+
+.formSubmit:hover {
+    color: #eb5e28;
+    border-color: #eb5e28
+}
+
+/*CONTACT SECTION END */

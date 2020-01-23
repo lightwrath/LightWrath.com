@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>LightWrath.com</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" media="screen" href="main.css"> <!-- Main CSS file -->
+      <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"> <!-- Google fonts include -->
+      <script type="text/javascript" src="main.js"></script> <!-- Main Javascript file -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!-- JQuery include -->
+      <script src="https://kit.fontawesome.com/d9083f99b7.js"></script> <!-- Fontawesome include script -->
+   </head>
+   <body>
+      <nav>
+         <h1>LW</h1><span><p>(Alpha)</p></span>
+         <ul>
+            <li onclick="showProjects()">Projects</li>
+            <li onclick="showResume()">Resume</li>
+            <li onclick="showAbout()">About</li>
+            <li onclick="showContact()">Contact</li>
+         </ul>
+      </nav>
+      <main>
+         <!--<section id="card">
+            <div>
+               <img src="profileImg.jpg" alt="Kyle">
+            </div>
+            <div>
+               <h1>KYLE BIGGINS</h1>
+               <p>Passionate about development and technology.</p>
+            </div>
+            <div>
+               <ul>
+                  <li class="buttonText">Projects</li>
+                  <li class="buttonText">Resume</li>
+               </ul>
+               <ul>
+                  <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                  <li class="buttonIcon"><i class="fas fa-envelope"></i></li>
+                  <li class="buttonIcon"><i class="fab fa-linkedin"></i></li>
+               </ul>
+            </div>
+         </section>  card section end -->
+         <section id="projects">
+            <h1>Projects</h1>
+            <div class="filterTags">
+               Filtering Div
+            </div>
+            <article>
+               <div class="projectThumb">
+                  <img src="/article/jira/jira_thumb.png" alt="">
+               </div>
+               <div class="summary">
+                  <div class="disc">
+                     <h2>JIRA (with Docker)</h2>
+                     <p>Installation and configuration of JIRA with PostgreSQL. Configured as 2 seperate containers linked via a docker bridge network.</p>
+                  </div>
+                  <div class="techTags">
+                     <ul>
+                        <li>JIRA</li>
+                        <li>Docker</li>
+                        <li>Docker Compose</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="icons">
+                  <ul>
+                     <li class="buttonIcon"><a href="/article/jira/jira.html"><i class="fas fa-eye"></i></a></li>
+                     <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                     <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                  </ul>
+               </div>
+            </article>
+            <article>
+               <div class="projectThumb">
+                  <img src="/article/plex/plexThumb.jpg" alt="">
+               </div>
+               <div class="summary">
+                  <div class="disc">
+                     <h2>Plex (with Docker)</h2>
+                     <p>Installation of Plex through docker</p>
+                  </div>
+                  <div class="techTags">
+                     <ul>
+                        <li>Docker</li>
+                        <li>Docker Compose</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="icons">
+                  <ul>
+                     <li class="buttonIcon"><a href="/article/plex/docker_plex.html"><i class="fas fa-eye"></i></a></li>
+                     <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                     <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                  </ul>
+               </div>
+            </article>
+            <article>
+               <div class="projectThumb">
+                  <img src="/article/docker/docker_logo_thumb.png" alt="">
+               </div>
+               <div class="summary">
+                  <div class="disc">
+                     <h2>Docker Basics</h2>
+                     <p>Install Docker and Docker Compose, general usage and monitoring, SELinux and docker.</p>
+                  </div>
+                  <div class="techTags">
+                     <ul>
+                        <li>Linux</li>
+                        <li>Docker</li>
+                        <li>Docker Compose</li>
+                        <li>SELinux</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="icons">
+                  <ul>
+                     <li class="buttonIcon"><a href="/article/docker/docker_basics.html"><i class="fas fa-eye"></i></a></li>
+                     <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                     <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                  </ul>
+               </div>
+            </article>
+            <article>
+               <div class="projectThumb">
+                  <img src="/article/btrfs_setup-cheat_sheet/btrfsThumb.jpg" alt="">
+               </div>
+               <div class="summary">
+                  <div class="disc">
+                     <h2>BTRFS</h2>
+                     <p>Configure BTRFS and perform maintaince tasks</p>
+                  </div>
+                  <div class="techTags">
+                     <ul>
+                        <li>Linux</li>
+                        <li>BTRFS</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="icons">
+                  <ul>
+                     <li class="buttonIcon"><a href="/article/btrfs_setup-cheat_sheet/btrfs_cheat_sheet.html"><i class="fas fa-eye"></i></a></li>
+                     <li class="buttonIcon"><i class="fas fa-file-alt"></i></li>
+                     <li class="buttonIcon"><i class="fab fa-github-square"></i></li>
+                  </ul>
+               </div>
+            </article>
+            <article>
+               <div class="projectThumb">
+                  <img src="/article/install_setup_linux_server/fedora-linux-thumb.png" alt="">
+               </div>
+               <div class="summary">
+                  <div class="disc">
+                     <h2>Fedora 31 Installation and setup</h2>
+                     <p>Installation media creation and and basic Fedora installaton. Media creation script available on github, uses dialog and dd for easy media creation on linux.</p>
+                  </div>
+                  <div class="techTags">
+                     <ul>
+                        <li>Linux</li>
+                        <li>BASH</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="icons">
+                  <ul>
+                     <li class="buttonIcon"><a href="/article/install_setup_linux_server/install_&_setup_linux_server.html"><i class="fas fa-eye"></i></a></li>
+                     <li class="buttonIcon"><a href="https://github.com/lightwrath/linux-media.creator-script/blob/master/README.md"><i class="fas fa-file-alt"></i></a></li>
+                     <li class="buttonIcon"><a href="https://github.com/lightwrath/linux-media.creator-script"><i class="fab fa-github-square"></i></a></li>
+                  </ul>
+               </div>
+            </article>
+         </section> <!-- Projects section end -->
+         <section id="resume"> <!--- Resume Section -->
+            <div class="cvSideBar">
+               <div class="cvPhoto">
+                  <img src="/cvProfilePic.jpg" alt="">
+               </div>
+               <div class="cvKeySkills">
+                  <h2>Technologies</h2>
+                  <ul>
+                     <li>Linux</li>
+                     <li>Windows Desktop XP - 10</li>
+                     <li>Windows Server</li>
+                     <br>
+                     <li>Active Directory</li>
+                     <li>AWS EC2</li>
+                     <li>Docker & Docker Compose</li>
+                     <li>JIRA</li>
+                     <li>Microsoft Office</li>
+                     <li>Networking</li>
+                     <li>RAID & BTRFS</li>
+                     <br>
+                     <li>BASH</li>
+                     <li>CSS</li>
+                     <li>HTML</li>
+                     <li>Python</li>
+                     <li>SQL</li>
+                  </ul>
+               </div>
+               <div class="cvLanguage">
+                  <h2>Languages</h2>
+                  <ul>
+                     <li>English - Native</li>
+                     <li>Finnish - A2.2 (2019)</li>
+                  </ul>
+               </div>
+               <div class="cvContactMe">
+                  <h2>Get in touch</h2>
+                  <ul>
+                     <li>kyle_biggins@outlook.com</li>
+                     <li>045 7877 1774</li>
+                     <li>lightwrath.com</li>
+                  </ul>
+                  <br>
+                  <p><em>referances available on request</em></p>
+               </div>
+            </div>
+            <div class="cvContent">
+               <div class="cvContact">
+                  <div class="cvName">
+                     <h1>Kyle Biggins</h1>
+                  </div>
+                  <div class="cvJobTitle">
+                     <h3>IT System Specialist</h3>
+                  </div>
+               </div>
+               <div class="cvPersonal">
+                  <h2>Personal statement</h2>
+                  <p>
+                     A self-determined professional with extensive knowledge in system installation, configuration, automation on Linux and Windows operating systems. 
+                     Proficient usage of project management tools and frameworks, along with an understand of the software development cycle and programming skills.
+                  </p>
+                  <br>
+                  <p>
+                     Having excellent technical analytical skills to allow for efficient problem solving through investigation and testing. 
+                     Brilliant communication skills with the ability to liaise with customers and discuss ideas within a team environment.
+                  </p>
+               </div>
+               <div class="cvWork">
+                  <h2>Employment history</h2>
+                  <div class="cvWorkTitle">
+                     <h3>System Administrator</h3>
+                  </div>
+                  <div class="cvWorkLocation">
+                     <h3>NHS Ophthalmology</h3>
+                  </div>
+                  <div class="cvWorkContent"> <!-- What about assisting in deploying and intergrating the medical imaging database -->
+                     <ul>
+                        <li>Planned, created, tested and deployed automation software that I developed in Python for processing appointment data between 2 medical systems.</li>
+                        <li>Tasked with the creation of Front-End web applications for viewing medical information from a SQL database.</li>
+                        <li>I documented the development process for my projects, creating a project scope and ensuring the project remains within scope. Creating and recording a testing plan, followed by a monitored trail of software. Creating a deployment plan and documenting the installation process as well as documenting previous procedures to ensure compatibility and fallback should it had been required.</li>
+                        <li>Responsible for creating SQL queries using SQL Server 2012 to extract data and represent it in a human-readable reform</li>
+                        <li>Managed back-end medical system maintenance, such as creating new users and managing permissions. Proving support and answering to feature requests. Creating an action plan for the implementation of new software features.</li>
+                        <li>Proving software training to colleagues and ensuring best practices are upheld by users to safeguard data integrity.</li>
+                     </ul>
+                  </div>
+                  <div class="cvWorkTitle">
+                     <h3>Technical Analyst</h3>
+                  </div>
+                  <div class="cvWorkLocation">
+                     <h3>Dixons Carphone</h3>
+                  </div>
+                  <div class="cvWorkContent">
+                     <ul>
+                        <li>Installation and configuration of operating systems and applications.</li>
+                        <li>Providing support for hardware and software issues.</li>
+                        <li>Diagnosing and solving hardware and software faults.</li>
+                        <li>Testing, evaluating and supporting new technologies.</li>
+                        <li>Analysing technical logs to discover faults.</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="cvHobbies">
+                  <h2>Continuous Improvement / Continuous Development</h2>
+                  <p>
+                     I demonstrate my passion for technology in both my work and personal life. 
+                     I’m an advocate for open source software and the Linux operating system. 
+                     I enjoy investing my time into learning new technologies that interest me and finding technical solutions to issues in my daily life.
+                  </p>
+                  <br>
+                  <p>
+                     I run and maintain my own home Fedora server to host my own cloud services. 
+                     This allows me to learn and develop my skills in the latest technologies and practices in my own time. Recently I have started to write about my personal advancement on this website.
+                  </p>
+                  <br>
+                  <p>
+                     I often perform my own projects and manage these though JIRA (self-hosted) using a Scrum framework, although this is intended for team development, 
+                     I think it’s breaking down of large tasks, note recording and allowing for a flexible scope results in good planning and ensuring task completion is upheld. 
+                  </p>
+               </div>
+               <div class="cvEducation">
+                  <h2>Education</h2>
+                  <ul>
+                     <li>Level 3 Diploma in ICT Professional Competence</li>
+                     <li>Level 3 Diploma for ICT Systems and Principles for IT Professionals</li>
+                     <li>70-680 MCTS & 70-685 Windows Enterprise Desktop Support Technician </li>
+                     <li>ComTIA Network + Technician</li>
+                     <li>CompTIA A+ Certified (2009)</li>
+                     <li>Finnish Language proficiency: A2.2 (Dec 2019)</li>
+                     <li>Level 2 Key Skills in Application of Number (2004)</li>
+                     <li>Level 2 Award in Employability and Personal Development</li>
+                     <li>National Vocational Qualification, Level 2 Performing Engineering Operations</li>
+                     <li>Level 3 BTEC National Diploma in Manufacturing Engineering</li>
+                  </ul>
+               </div>
+            </div>
+         </section>
+         <section id="about">
+            <h1>About this project</h1>
+            <p>
+               This is a technology journey created and hosted by myself with the goal of using the best practices and latest tools to develop, build, test and deploy this site. 
+               I'll be using the site to write about the process. These articles are to serve as a reference to my findings and documenting the process rather than a 'how to' guide. 
+               At the moment this site is only using static content and will not focus extensivly on development of dynamic content, this will be reserved for future projects.
+               The main goal currently will be to setup and configure a fully automated commit, build, testing and deployment system. 
+            </p>
+            <p>Note: currently this site is in a testing alpha state</p>
+         </section>
+         <section id="contact"> <!-- Contact section -->
+            <h1>Connect with me</h1>
+            <form action="https://formspree.io/xvokrjdv" method="POST" enctype="multipart/form-data">
+               <input class="formName" type="text" name="Name" placeholder="Name..." required>
+               <input class="formEmail" type="email" name="E-mail" placeholder="E-mail..." required>
+               <input class="formSubject" type="text" name="Subject" placeholder="Subject..." required>
+               <textarea class="formMessage" type="text" rows="3" name="Message" placeholder="Message..." required></textarea>
+               <input class="formSubmit" type="submit" name="SEND MESSAGE" value="SEND MESSAGE">
+            </form>
+         </section> <!-- Contact section end -->
+      </main>
+    </body>
+</html>
