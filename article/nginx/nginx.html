@@ -1,0 +1,132 @@
+<html>
+   <head>
+      <title></title>
+      <meta content="">
+      <style></style>
+      <link rel="stylesheet" type="text/css" media="screen" href="/main.css"> <!-- Main CSS file -->
+   </head>
+   <body>
+      <iframe id="navBar" src="/navbar.html" scrolling="no" frameborder="0"></iframe>
+      <main>
+         <article class="projectPage">
+            <img class="splashImage" src="nginx.png" alt="">
+            <section class="pubBody">
+               <h1>NGINX from source on docker</h1>
+               <h2>Objectives</h2>
+               <p>
+                  To build Nginx in docker using a build file and compose file. This will be used to automatically deploy a website to Nginx.
+                  I will later use the image to allow for scripted deployment of beta versions of the site for testing. 
+                  This script should have a configuration file that will contain the port for the test deployment, this will increment with each deployment, this port should also be added to the container name for easy identification.
+               </p>
+               <h2>Creating a Dockerfile</h2>
+               <p>
+                  We can create a docker file to setup the environment for the Nginx server, download the source and install it.
+                  The below is what I'm starting with to ensure we can get Nginx up and running
+               </p>
+               <p class="code">
+                  FROM ubuntu:latest
+
+                  RUN apt-get update \
+                     && apt-get install -y wget build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev \
+                     && rm -rf /var/lib/apt/lists/*
+
+                  RUN cd /tmp && wget https://nginx.org/download/nginx-1.16.1.tar.gz \
+                     && tar -zxvf nginx-1.16.1.tar.gz && cd nginx-1.16.1/ \
+                     && ./configure \
+                        --sbin-path=/usr/bin/nginx \
+                        --conf-path=${NGINX_CONF} \
+                        --error-log-path=${NGINX_LOG}/error.log \
+                        --http-log-path=${NGINX_LOG}/access.log \
+                        --with-pcre \
+                        --pid-path=/var/run/nginx.pid \
+                        --with-http_ssl_module \
+                     && make \
+                     && make install
+
+                  EXPOSE 80/tcp 443/tcp 1935/tcp
+
+                  CMD ["/usr/bin/nginx", "-g", "daemon off;"]
+               </p>
+               <p>
+                  This will firstly get the latest image of Ubuntu, and then it will install the packages we need for building and also some packages needed for running the Nginx server.
+                  It will then download the source files and extract them. Then run a configure with custom flags. After a make and make install will be run for installation.
+                  Ports will be exposed that are needed and the command will be set for running Nginx. <em class="codeSnip">-g daemon off;</em> is used to ensure that Nginx runs in the forground of the container to keep the container alive.
+               </p>
+               <p>If the build fails during testing then ensure to remove the prevous image and container with something <em class="codeSnip">sudo docker container rm ID && sudo docker image rm ID</em> with ID's gained from <em class="codeSnip">sudo docker ps -a</em>, make the required changes and try again.</p>
+               <p>After the image is created, it can be run with:</p>
+               <p class="code">
+                  $ sudo docker run --name nginx -e TERM=xterm -p 80:80 CONTAINER-ID
+               </p>
+               <p>Check your port 80 and we should now have the Nginx test page. </p>
+               <h2>Setting up the environment</h2>
+               <p>Now we have a basic deployment of Nginx's test server. We can set some environmental paramiters that can be chanaged on build using <em class="codeSnip">--build-arg</em>.</p>
+               <p class="code">
+                  ENV NGINX_CONF=/etc/nginx/nginx.conf \
+                  NGINX_LOG=/var/log/nginx \
+                  NGINX_HTML=/usr/local/nginx/html
+               </p>
+               <p>We can build the image again using <em class="codeSnip">sudo docker build -t nginx nginxFiles/</em> adding <em class="codeSnip">--build-arg</em> if desired.</p>
+               <h2>Running the image</h2>
+               <p>Now we have our build image, we'll run it with the aruments we'll generally want when we make a docker compose file and test it with our content.</p>
+               <p class="code">
+                  sudo docker run -d --name nginx -e TERM=xterm -v /mnt/RAID/personal/Programs/lightwrath-com/nginx-logs:/var/log/nginx:z -v /mnt/RAID/personal/Programs/lightwrath-com/nginx-html:/usr/local/nginx/html:z -p 80:80 nginx
+               </p>
+               <p>
+                  This should run our Nginx server and host the content in our local folder at lightwrath-com/nginx.html.
+                  Make sure you have your content copied in this local
+                  Note that the :z flag is only required for SELinux systems
+               </p>
+               <p>
+                  Seems to work great, so I'll stop that: <em class="codeSnip">sudo docker stop CONTAINER-ID</em>. 
+                  Now we can make a compose file using the same configuration and just adding a new names so we can easily identify our deployment.</p>
+               <p class="code">
+                  version: '3'
+                  services:
+                     lightwrath:
+                        container_name: lightwrath-com
+                        image: nginx
+                        restart: unless-stopped
+                        ports:
+                        - "80:80/tcp"
+                        environment:
+                        - TERM=xterm
+                        hostname: lightwrathcom
+                        volumes:
+                        - /mnt/RAID/personal/Programs/lightwrath-com/nginx-logs:/var/log/nginx:z
+                        - /mnt/RAID/personal/Programs/lightwrath-com/nginx-html:/usr/local/nginx/html:z
+               </p>
+               <p>This can serve as the main deployment for the website.</p>
+               <h2>Automating deployment of test versions</h2>
+               <p>
+                  Now I want to make a small bash script to copy files from the latest commit of the website, copy the files to another directory and run on a new port with a corresponding name. 
+                  I'll make a small configuration file that I can use as a sources file in the bash  script. 
+               </p>
+               <p class="code">
+                  name="beta-lw-v"
+                  port=10100
+                  sourceFiles="/mnt/RAID/personal/Code/lightwrath-site/*"
+                  dockerFiles="/mnt/RAID/personal/Programs/lightwrath-com/beta-files"
+               </p>
+               <p>
+                  Here is a my small script:
+                  This will firstly create folders for the new deployment and then copy the sources files to the html folder.
+                  A docker container will then be started with the name specified followed by the port.
+                  The configuration file will then be updated with a port number increment to allow the next deployment to take place on another port with another name.
+               </p>
+               <p class="code">
+                  #!/bin/bash
+                  source lightwrath_deploy_beta.conf 
+                  mkdir $dockerFiles/$name-$port
+                  mkdir $dockerFiles/$name-$port/nginx-html
+                  mkdir $dockerFiles/$name-$port/nginx-logs
+                  cp -r $sourceFiles $dockerFiles/$name-$port/nginx-html
+                  sudo docker run -d --name $name-$port -e TERM=xterm -v $dockerFiles/$name-$port/nginx-logs:/var/log/nginx:z -v $dockerFiles/$name-$port/nginx-html:/usr/local/nginx/html:z -p $port:80 nginx
+                  echo "Deployment complete"
+                  newPort=$((port+1))
+                  sed -i -r "s/port=$port/port=$newPort/" lightwrath_deploy_beta.conf
+               </p>
+            </section>
+         </article>
+      </main>
+   </body>
+</html>

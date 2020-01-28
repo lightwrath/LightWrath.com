@@ -1,0 +1,93 @@
+<html>
+   <head>
+      <title></title>
+      <meta content="">
+      <style></style>
+      <link rel="stylesheet" type="text/css" media="screen" href="/main.css"> <!-- Main CSS file -->
+   </head>
+   <body>
+      <iframe id="navBar" src="/navbar.html" scrolling="no" frameborder="0"></iframe>
+      <main>
+         <article class="projectPage">
+         <img class="splashImage" src="plex.svg" alt="">
+            <section class="pubBody">
+            <h1>Plex installation in Docker</h1>
+            <p>First we pull the image from docker hub. I'm going to be using the offical docker image however there is one from linuxserver.io that is almost identicial in nature.</p>
+            <p class="codeSnip">$ sudo docker pull plexinc/pms-docker</p>
+            <p>
+               Plex will need to store configuration, transcode data as well as having access to media files.
+               You can just bind this to a location of your choosing but for the config and transcode I'm going to create volumes in docker
+               You can create volumes in docker as such
+            </p>
+            <p class="code">
+               $ sudo docker volume create plexConfig
+               $ sudo docker volume create plexTranscode
+            </p>
+            <p>List volumes using <em class="codeSnip">$ sudo docker volume ls</em> and removal using <em class="codeSnip">$ sudo docker volume rm volName</em></p>
+            <p>I'll be running plex under the default bridge network, this means that ports will need to be forwarded, a way around this is to set <em class="codeSnip">--network=host</em>.</p>
+            <ul>
+               <li>Replace the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">timezone</a> with your own.</li>
+               <li>A claim token can be obtained <a href="https://www.plex.tv/claim/">here</a>. Login and then copy the code into the token field. This token is time limited so ensure to run the below command soon after.</li>
+               <li>Replace the hostIPAddress with the public IP address or domain name</li>
+               <li><em class="codeSnip">-h HOSTNAME</em> Set the host name within the docker container</li>
+               <li>On <em class="codeSnip">-v /mnt/RAID/plex:/data:Z</em>, replace <em class="codeSnip">/mnt/RAID/plex/</em> with your own directory. The <em class="codeSnap">:Z</em> at the end is for SELinux. This not be required for all systems, run <em class="codeSnip">$ sestatus</em> on your host, if it shows as SELinux enabled then you'll require the :Z flag to ensure you don't encounter permission issues</li>
+               <li><em class="codeSnip">-d</em> is for detatched mode, it will run in the background.</li>
+               <li><em class="codeSnip">--name</em> will set the name of the container</li>
+               <li><em class="codeSnip">-p</em> is to define the ports our container will use so they can be routed from IPTables to our container.</li>
+               <li><em class="codeSnip">plexinc/pms-docker:latest</em> or <em class="codeSnip">plexinc/pms-docker:plexpass</em>? Use the plexpass image if you are a plexpass member, this can sometimes provide additional features.</li>
+            </ul>
+            <p class="code">
+               $ sudo docker run -d --name plex -p 32400:32400/tcp -p 3005:3005/tcp -p 8324:8324/tcp -p 32469:32469/tcp -p 1900:1900/udp -p 32410:32410/udp -p 32412:32412/udp -p 32413:32413/udp -p 32414:32414/udp -e TZ="Europe/Helsinki" -e PLEX_CLAIM="claimTokenC1a1mt0k3n" -e ADVERTISE_IP="http://hostIPAddress:32400/" -h plexserver -v plexConfig:/config -v plexTranscode:/transcode -v /mnt/RAID/plex:/data:z plexinc/pms-docker
+            </p>
+            <p>
+            This will spin up our container so we can test Plex and see if everything is working as it should be. 
+            If we want this to be more peminant or will be using it on other servers, it'll be better if we create a docker compose file
+            </p>
+            <h3>Docker Compose</h3>
+            <p>
+            We can make a main docker-compose file that will have all our services we wish to maintain and a run on this machine.
+            Or we can make a seperate file to our main compose file and use it with the <em class="codeSnip">-f</em>.
+            Lets create a new .yml file, by default the name should be docker-compose.yml.
+            I'll use Vim here but <em class="codeSnip">nano</em> is fine too.
+            </p>
+            <p class="code">$ vi docker-compose.yml</p>
+            <p>
+            Here's the file I've created for the Plex service.
+            </p>
+            <p class="code">
+            version: '3'
+            services:
+               plex:
+                  container_name: plex
+                  image: plexinc/pms-docker:plexpass
+                  restart: unless-stopped
+                  ports:
+                  - "32400:32400/tcp"
+                  - "3005:3005/tcp"
+                  - "8324:8324/tcp"
+                  - "32469:32469/tcp"
+                  - "1900:1900/udp"
+                  - "32410:32410/udp"
+                  - "32412:32412/udp"
+                  - "32413:32413/udp"
+                  - "32414:32414/udp"
+                  environment:
+                  - TZ="Europe/Helsinki"
+                  - PLEX_CLAIM=claimTokenC1a1mt0k3n
+                  - ADVERTISE_IP=http://hostIPAddress:32400/
+                  hostname: plexserver
+                  volumes:
+                  - plexConfig:/config
+                  - plexTranscode:/transcode
+                  - /mnt/RAID/plex:/data:z
+            volumes:
+               plexConfig:
+                  external: true
+               plexTranscode:
+                  external: true
+            </p>
+            </section>
+         </article>
+      </main>
+   </body>
+</html>

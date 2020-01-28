@@ -1,0 +1,147 @@
+<html>
+   <head>
+      <title></title>
+      <meta content="">
+      <style></style>
+      <link rel="stylesheet" type="text/css" media="screen" href="/main.css"> <!-- Main CSS file -->
+   </head>
+   <body>
+      <iframe id="navBar" src="/navbar.html" scrolling="no" frameborder="0"></iframe>
+      <main>
+         <article class="projectPage">
+            <img class="splashImage" src="btrfs.jpg" alt="">
+               <section class="pubBody">
+                  <h1>BTRFS Cheat Sheet</h1>
+                  <p class="pubInfo">Published: Updated: Author: </p>
+                  <h2>Why BTRFS?</h2>
+                  <p>
+                     In the fight against bitrot and data corruption there are a few options available depending on use case. 
+                     At the moment I would recommend BTRFS for home server, personal data projects or maybe small buinsess use.
+                     Although BTRFS is used in the data centre, this is still mainly dominated by ZFS or SAN's (which are commonly just server grade hardware using ZFS).
+                  </p>
+                  <p>
+                     BTRFS and ZFS have all the same benefits of protecting against bitrot and are able to store data on RAID arrays while writing meta and parity data for recovery and redundency.
+                     However BTRFS is more geared towards allowing for changes to array sizes. Expanding an array, changing the RAID format on the fly. Which doesn't seem to be within the ZFS philosophy as these are not desired features within the data centre.
+                     Servers are normally setup with a single purpose in mind and enough storage is given on day one to allow for the machines expected life, after with it is often replaced.
+                  </p>
+                  <p>
+                     BTRFS is a glowing example of what a modern file system should be. 
+                     Prior to ZFS, BTRFS and the like the risk of bit rot and data corruption due to an unreported faulty drive was a huge risk. 
+                     Before such technologies there wasn't much of an answer to thsese issues of data storage and even today many hardware raid controllers alone don't provide an answer.
+                  </p>
+                  <h2>BTRFS setup</h2>
+                  <p>BTRFS should come preinstalled with most distros. The version can be checked using <em class="codeSnip">btrfs --version</em>.</p>
+                  <p class="code">
+                     $ btrfs --version
+                     btrfs-progs v5.4 
+                  </p>
+                  <p>Then we can get our drives and current BTRFS devices using <em class="codeSnip">lsblk</em> and <em class="codeSnip">btrfs fi show</em>. Should you not have any BTRFS enabled devices then <em class="codeSnip">btrfs fi show</em> will not show any results.</p>
+                  <p class="code">
+                     $ lsblk
+                     NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+                     sda               8:0    0 31.8G  0 disk 
+                     ├─sda1            8:1    0    1G  0 part /boot
+                     └─sda2            8:2    0 30.8G  0 part 
+                     ├─fedora-root 253:0    0   15G  0 lvm  /
+                     └─fedora-swap 253:1    0  3.2G  0 lvm  [SWAP]
+                     sdb               8:16   0    8G  0 disk 
+                     sdc               8:32   0    8G  0 disk 
+                     sdd               8:48   0    8G  0 disk 
+                     sde               8:64   0    8G  0 disk 
+                     sdf               8:80   0    8G  0 disk 
+                     sr0              11:0    1 1024M  0 rom  
+                     $ btrfs fi show
+                  </p>
+                  <p>For a single drive without a RAID array we can use:</p>
+                  <p class="code">sudo mkfs.btrfs -L partition_label /dev/sdX</p>
+                  <p>
+                     Or for a RAID ssetup we can use something like the below, <em class="codeSnip">-d</em> is telling BTRFS how the data will be stored and <em class="codeSnip">-m</em> is a tag used for the meta data,
+                     <em class="codeSnip">-d single</em> will create a JBOD configuration. RAID configurations fully supported are RAID 0, RAID 1, RAID 10 while RAID 5 & 6 at the time of writing still suffer from a write hole problem.
+                  </p>
+                  <div class="collapse">
+                     <p>RAID 5 write hole</p>
+                     <p>information about the write hole here</p>
+                  </div>
+                  <p class="code">sudo mkfs.btrfs -d raid5 -m raid5 /dev/sdX /dev/sdX /dev/sdX /dev/sdX</p>
+                  <p>In order to mount the file system, firstly create a mount point, then mount the new BTRFS file system to that point. The full file system can be mounted by just mounting one of the devices included in a multiple device array.</p>
+                  <p class="code">
+                     $ sudo mkdir /mnt/RAID
+                     $ sudo mount /dev/sdb /mnt/RAID
+                  </p>
+                  <p>To show our file system we can use:</p>
+                  <p class="code">
+                     $ sudo btrfs filesystem show /mnt/RAID
+                     Label: none  uuid: 294266a0-e73c-487e-be88-1fa7b2a6c487
+                              Total devices 5 FS bytes used 1.19MiB
+                              devid    1 size 8.00GiB used 1.05GiB path /dev/sdb
+                              devid    2 size 8.00GiB used 1.05GiB path /dev/sdc
+                              devid    3 size 8.00GiB used 1.05GiB path /dev/sdd
+                              devid    4 size 8.00GiB used 1.05GiB path /dev/sde
+                              devid    5 size 8.00GiB used 1.05GiB path /dev/sdf
+                  </p>
+                  <p>Have it mount on startup by adding it to our <em class="codeSnip">/etc/fstab</em> file. Get the UUID of your drives using <em class="codeSnip">lsblk</em> then echo it to the fstab file, replacing the UUID with your own and the mount point (/mnt/RAID) with your mount point.</p>
+                  <p class="code">
+                     $ lsblk -o name,mountpoint,uuid
+                     sdb             /mnt/RAID  294266a0-e73c-487e-be88-1fa7b2a6c487
+                     $ echo "UUID="294266a0-e73c-487e-be88-1fa7b2a6c487"   /mnt/RAID   btrfs defaults    0   0" | sudo tee -a /etc/fstab
+                  </p>
+                  <h2>Checking the file system</h2>
+                  <h3>checking for errors</h3>
+                  <p>Check for errors on the devices within a BTRFS file system</p>
+                  <p class="code">
+                     $ sudo btrfs device stats /mnt/RAID
+                     [/dev/sdb].write_io_errs    0
+                     [/dev/sdb].read_io_errs     0
+                     [/dev/sdb].flush_io_errs    0
+                     [/dev/sdb].corruption_errs  0
+                     [/dev/sdb].generation_errs  0
+                     ...
+                  </p>
+                  <h3>Running a scrub</h3>
+                  <p>
+                     Scrubbing the file system will scan the entire file system and uses the built in metadata to remove errors or bitrot. 
+                     When using the file system, data will still be returned correctly even if there are errors that have not been corrected. The scrub process will make these corrections perminant.
+                     To prevent against bitrot then this should be run periodically, depending on how much data you have and how long you can afford the performance hit will determine how often this is done.
+                  </p>
+                  <p class="code">$ sudo btrfs scrub start /mnt/RAID</p>
+                  <p>
+                     The process can take a long time depending on the file system size and will create a log of any problems found.
+                     Should you need to restart during the process then this is possible, after the reboot the status will show as 'aborted'. 
+                     We can check the status using:</p>
+                  <p class="code">$ sudo btrfs scrub status /mnt/RAID</p>
+                  <p>If the status does show as aborted or cancelled then the operation can be resumed.</p>
+                  <p class="code">$ sudo btrfs scrub resume /mnt/RAID</p>
+                  <p>Or the below will execute the command every 10 seconds. Use CTRL C to exit</p>
+                  <p class="code">$ while true; do sudo btrfs scrub status /mnt/RAID/; sleep 10s; done</p>
+                  <p>To cancel a scrub operation then use <em class="codeSnip">$ sudo btrfs scrub cancel /mnt/RAID</em>.</p>
+                  <h3>BTRFS balancing</h3>
+                  <p>
+                     BTRFS is simply put, both a logical volume manager and file system. 
+                     In some cases data maybe not be allocated evenly across all your BTRFS devices, such as after adding a new device.
+                     In normal usage this isn't required. 
+                  </p>
+                  <p>We can view the size allocation using <em class="codeSnip">filesystem show</em></p>
+                  <p class="code">
+                     $ sudo btrfs filesystem show /mnt/RAID
+                     Label: none  uuid: 294266a0-e73c-487e-be88-1fa7b2a6c487
+                              Total devices 5 FS bytes used 28.03GiB
+                              devid    1 size 8.00GiB used 8.00GiB path /dev/sdb
+                              devid    2 size 8.00GiB used 8.00GiB path /dev/sdc
+                              devid    3 size 8.00GiB used 8.00GiB path /dev/sdd
+                              devid    4 size 8.00GiB used 8.00GiB path /dev/sde
+                              devid    5 size 8.00GiB used 8.00GiB path /dev/sdf
+                  </p>
+                  <p>Start a balancing process by doing the following:</p>
+                  <p class="code">$ sudo btrfs balance start /mnt/RAID</p>
+                  <p class="code">$ sudo btrfs balance status /mnt/RAID</p>
+            </section>
+            <section class="pubFooter">
+               <h3>References</h3>
+               <ul>
+                  <li>BTRFS in depth: <a href="https://btrfs.wiki.kernel.org/index.php/SysadminGuide">https://btrfs.wiki.kernel.org/index.php/SysadminGuide</a></li>
+               </ul>
+            </section>
+         </article>
+      </main>
+   </body>
+</html>

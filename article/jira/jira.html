@@ -1,0 +1,94 @@
+<html>
+   <head>
+      <title></title>
+      <meta content="">
+      <style></style>
+      <link rel="stylesheet" type="text/css" media="screen" href="/main.css"> <!-- Main CSS file -->
+   </head>
+   <body>
+      <iframe id="navBar" src="/navbar.html" scrolling="no" frameborder="0"></iframe>
+      <main>
+         <article class="projectPage">
+            <img class="splashImage" src="jira.svg" alt="">
+            <section class="pubBody">
+               <h2>JIRA Installation</h2>
+               <p>
+                  Here I'll be going through setting up JIRA with Docker. 
+                  We'll need to setup a SQL server for our JIRA server. 
+                  There are limitations on the Databases that JIRA supports, 
+                  <a href="https://confluence.atlassian.com/adminjiraserver/supported-platforms-938846830.html">Check here</a> 
+                  for a full list of supported databases for your platform, ensure to check the JIRA server version.
+               </p>
+               <p>
+                  I'll be setting up with PostgreSQL 10 and will be configuring this in Docker to not be accessable on the host network.
+                  PostgreSQL and JIRA shall be setup on the same bridge network to allow them to communicate. 
+               </p>
+               <p>
+                  We can get JIRA installed firstly and create a volume for <em class="codeSnip">JIRA_HOME</em>
+               </p>
+               <p class="code">$ sudo docker volume create jiraHome</p>
+               <h3>Quick install - Testing</h3>
+               <p>Then we can get the container running with the below</p>
+               <ul>
+                  <li><em class="codeSnip">-d</em> will run in detatched mode, so it's not running on our terminal session.</li>
+                  <li><em class="codeSnip">-p 8080:8080</em> will bind the port 8080 to our container to 8080 on our local host.</li>
+                  <li><em class="codeSnip">-v</em> is binding the JIRA configuration data to our volume.</li>
+               </ul>
+               <p class="code">$ sudo docker run -d -p 8080:8080 -v jiraHome:/var/atlassian/application-data/jira --name="jira" atlassian/jira-software</p>
+               <p>It should pull the image automatically, if not then simply run <em class="codeSnip">$ sudo docker pull atlassian/jira-software</em> and try again.</p>
+               <p>Got to your URL or IP with the port 8080 <em class="codeSnip">yourdomain.com:8080</em> and I just went to the evaluation setup at this point in order to test and make sure things was working.</p>
+               <p>Should everything be ok, we'll now setup our database on another container and get them both running together via <em class="codeSnip">docker-compose</em>.</p>
+               <h3>Docker Compose</h3>
+               <p class="code">
+                  version: '3'
+                  services:
+                     jiraDb:
+                        image: postgres:10.11
+                        container_name: jiraDb
+                        restart: always
+                        environment:
+                        - POSTGRES_USER=jira
+                        - POSTGRES_PASSWORD=jirapa$$
+                        - POSTGRES_DB=jiraDb
+                        hostname: jiraDb
+                        networks:
+                        - jiraNetwork
+                        volumes:
+                        - jiraDbData:/var/lib/postgresql/data:z
+
+                     jira:
+                        image: atlassian/jira-software:latest
+                        container_name: jira
+                        restart: unless-stopped
+                        ports:
+                        - "8080:8080"
+                        networks:
+                        - jiraNetwork
+                        volumes:
+                        - jiraHome:/var/atlassian/application-data/jira:z
+
+                  volumes:
+                     jiraDbData:
+                        external: true
+                     jiraHome:
+
+                  networks:
+                     jiraNetwork:
+               </p>
+               <p>
+                  This will start 2 containers, one for the Jira server and another for postgreSQL 10.11.
+                  The environment flags on the database will set the user, password and database that the jira server can use.
+                  A volume created for the database files, and the jira files. 
+                  A network created, in bridge mode, to allow the containers to communicate.
+               </p>
+               <p>
+                  Once started then the service can be found on port 8080.
+                  The manual setup should be selected where you'll be asked for the hostname, user, password and database from the Postgres server.
+                  Ensure that you have a license key, which can be configured from <a href="https://my.atlassian.com/product">Atlassian</a>.
+                  An SMTP server can be configured easily by using a service such as <a href="https://www.mailgun.com/">mailgun</a>.
+               </p>
+            </section>
+         </article>
+      </main>
+   </body>
+</html>

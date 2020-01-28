@@ -114,20 +114,6 @@ a, a:visited {
     color: #eb5e28;
 }
 
-/*
-@media only screen and (max-height: 900px) {
-    main {
-        color: #fffcf2;
-        background-color: #252422;
-        border-radius: 10px;
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translate(-50%, -10%);
-    }
-}
-/*
-
 /* MAIN DOCUMENT END */
 
 /*PROJECTS SECTION */
@@ -296,6 +282,96 @@ a, a:visited {
 
 #resume .cvEducation ul {
     padding-left: 20px;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 900px) {
+   #resume {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+  }
+  
+  #resume h1 {
+      letter-spacing: 10px;
+      line-height: 2em;
+      font-size: 3em;
+      color: #eb5e28;
+  }
+  
+  #resume h2 {
+      color: #eb5e28;
+      margin: 0.5em 0 0.5em 0;
+  }
+  
+  #resume h3 {
+      color: #ccc5b9;
+      margin: 0.5em 0 0.5em 0;
+  }
+  
+  #resume p {
+      display: block;
+  }
+  
+  #resume .cvSideBar {
+      width: 90%;
+      background-color: #403d39;
+      padding: 5%;
+      border-radius: 0;
+  }
+  
+  #resume .cvSideBar h2 {
+      text-align: center;
+      border-bottom: 2px solid #eb5e28;
+  }
+  
+  #resume .cvSideBar div {
+      padding: 2.5% 10% 2.5% 10%;
+  }
+  
+  #resume .cvSideBar li {
+      list-style-type: none;
+      line-height: 1.5em;
+      color: #fffcf2;
+  }
+  
+  #resume .cvPhoto {
+     display: none;
+  }
+  
+  #resume .cvContent {
+      width: 95%;
+      padding: 2.5%;
+  }
+  
+  #resume .cvPersonal, .cvWork, .cvHobbies, .cvEducation {
+      margin-bottom: 50px;
+  }
+  
+  #resume .cvContact {
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-bottom: 20px;
+  }
+  
+  #resume .cvWorkTitle {
+      float: left;
+  }
+  
+  #resume .cvWorkLocation {
+      float: right;
+  }
+  
+  #resume .cvWorkContent {
+      clear: both;
+      padding: 20px;
+  }
+  
+  #resume .cvEducation ul {
+      padding-left: 20px;
+  }
 }
 
 /* RESUME SECTION END */

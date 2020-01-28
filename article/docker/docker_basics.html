@@ -1,0 +1,80 @@
+<html>
+   <head>
+      <title></title>
+      <meta content="">
+      <style></style>
+      <link rel="stylesheet" type="text/css" media="screen" href="/main.css"> <!-- Main CSS file -->
+   </head>
+   <body>
+      <iframe id="navBar" src="/navbar.html" scrolling="no" frameborder="0"></iframe>
+      <main>
+         <article class="projectPage">
+         <img class="splashImage" src="docker_logo.png" alt="">
+            <section class="pubBody">
+               <h1>Docker</h1>
+               <h2>Installation - Fedora 31</h2>
+               <p>
+               I'll be installing this on Fedora 31, but the steps should be similar for other distros. Check our your Distro's wiki first.
+               Enable the repository for docker in dnf then run the install command, when prompted press 'Y'.</p>
+               <p class="code">
+                  $ sudo dnf config-manager --add-repo=https://download.docker.com/linux/fedora/docker-ce.repo
+                  $ sudo dnf install docker-ce
+               </p>
+               <p>We can then start the service either from the command line as below or using the GUI fedora cockpit, within services.</p>
+               <p class="code">$ sudo systemctl enable --now docker</p>
+               <p>Note, should you get the error <em class="codeSnip">failed to start daemon: Devices cgroup isn't mounted</em> then doing the below should resolve this.</p>
+               <p class="code">
+               $ sudo dnf install -y grubby
+               $ sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=0"
+               $ sudo reboot
+               </p>
+               <p>So that we can start our containers using a YAML file, we'll install Docker Compose also.</p>
+               <p class="code">$ sudo dnf install docker-compose</p>
+               <p>Test the installation by running the hello world image.</p>
+               <p class="code">$ sudo docker run hello-world</p>
+               <p><em class="codeSnip">$ sudo docker ps</em> can be used to check the processes running in docker.</p>
+               <h3>SELinux</h3>
+               <p>
+               If you have SELinux enforced then this can sometimes cause permission issues with Docker.
+               To check if you have SELinux on your distrubution then you can run <em class="codeSnip">sestatus</em>.
+               </p>
+               <p>
+               If you have SELinux installed and running then you should run <em class="codeSnip">getenforce</em>.
+               This can either return Disabled, Permissive, or Enforced. 
+               Disabled and permissive will mean you don't have to worry about SELinux, however on Permissive SELinux will still record and log violations for monitoring.
+               While Enforced will block any file permission violations. 
+               </p>
+               <p>Docker supports SELinux for mounting volumes using either <em class="codeSnip">z</em> or <em class="codeSnip">Z</em>.</p>
+               <p><em class="codeSnip">Z</em> should be used when the mounted volume is private to that container.
+               <em class="codeSnip">z</em> should be used if the volume will be shared between multiple containers. 
+               </p>
+               <p>If accessing directories on your user then I would also add the user to the docker group.</p>
+               <p class="code">$ sudo usermod -aG docker $USER</p>
+               <h2>Docker workflow</h2>
+               <p>Talk of docker workflow</p>
+               <h2>Docker networking</h2>
+               <h3>Docker bridge (default)</h3>
+               <p>
+                  By default images run in docker will be using the docker bridge. This is where containers are running on a virtual NAT within the docker engine.
+                  This requires ports to be mapped to a container so inbound connects are forwarded to the correct container in the docker network.
+                  So mapping host port 8080 to container port 80 will allow for inbound connection on port 8080 to be forwarded to the container on port 80.
+                  By default container to container connections via the docker bridge are allowed.
+               </p>
+               <p>
+               A custom bridge can be created, this acts the same as the default bridge but creates a sperate pool of container connections.
+               Containers on this bridge can communicate with each other but not with containers on the default bridge or another custom bridge. 
+               </p>
+               <p>
+               Containers can also use the host option to remove network isolation.
+               This removes the need for port forwarding but comes with less control.
+               Application ports cannot be changed via docker and so running more then 1 of the same service may result in port conflicts. 
+               It also means less control over which parts of the containised application is available on the network.
+               </p>
+               <p>A none flag can also be set to disable networking for a container. </p>
+               <p>View docker images by using <em class="codeSnip">$ sudo docker image ls</em></p>
+               <p>View the docker containers using <em class="codeSnip">$ sudo docker container ls</em></p>
+            </section>
+         </article>
+      </main>
+   </body>
+</html>
